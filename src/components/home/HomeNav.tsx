@@ -1,9 +1,13 @@
 import { Link } from "@tanstack/react-router";
-import { LayoutDashboard, Wallet } from "lucide-react";
+import { ChartNoAxesCombined, Landmark, LayoutDashboard, ListFilter, Wallet } from "lucide-react";
+import { Button } from "@/components/ui/button";
 
 const items = [
   { to: "/", label: "نظرة عامة", icon: LayoutDashboard },
   { to: "/addresses", label: "العناوين", icon: Wallet },
+  { to: "/market", label: "ماركت", icon: ChartNoAxesCombined },
+  { to: "/address-management", label: "إدارة العناوين", icon: ListFilter },
+  { to: "/finnenice", label: "Finnenice", icon: Landmark },
 ] as const;
 
 export function HomeNav() {
@@ -13,6 +17,7 @@ export function HomeNav() {
         <ul className="flex gap-1 overflow-x-auto py-2 scrollbar-none">
           {items.map(({ to, label, icon: Icon }) => (
             <li key={to} className="shrink-0">
+              <Button asChild variant="ghost" className="h-auto p-0">
               <Link
                 to={to}
                 activeOptions={{ exact: true }}
@@ -22,6 +27,7 @@ export function HomeNav() {
                 <Icon className="size-5 sm:size-4" />
                 <span className="text-[11px] font-medium sm:text-sm">{label}</span>
               </Link>
+              </Button>
             </li>
           ))}
         </ul>

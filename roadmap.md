@@ -1,8 +1,7 @@
 # Roadmap
-- [ ] Wallet layout: top bar with profile switcher (settings + logout fixed at bottom)
-- [ ] Settings layout with sub-bar: profile, appearance, devices, sessions, passkeys, vault
-- [ ] Animated backgrounds + primary color picker
-- [ ] No visible app name; "Winter Wolf" in page titles only
-- [ ] Home page left empty
-- [ ] Use uploaded logo in top bar + favicon
-- [ ] Add the 10 uploaded images as selectable preset backgrounds (appearance page)
+- [x] Add Market to home navigation with searchable demo prices.
+- [ ] Replace Address Management with a saved recipient address book: person, coin, network, trusted or ordinary.
+- [x] Add the Finnenice page and navigation item.
+- [ ] Add Finnenice wallet inventory and personal inventory tabs, with expenses and goals.
+- [ ] Enable Cloud for saving recipients, personal expenses and goals.
+- [ ] Verify the new pages and navigation on desktop and mobile.

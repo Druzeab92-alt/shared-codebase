@@ -1,0 +1,13 @@
+{
+  "version": "7",
+  "dialect": "postgresql",
+  "entries": [
+    {
+      "idx": 0,
+      "version": "7",
+      "when": 1795145277256,
+      "tag": "0000_recipient_and_personal_finance",
+      "breakpoints": true
+    }
+  ]
+}

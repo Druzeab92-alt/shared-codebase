@@ -5,6 +5,7 @@ import { WalletProvider, useWallet } from "@/lib/wallet-store";
 import { PRIMARY_COLORS } from "@/lib/wallet-data";
 import { AnimatedBackground } from "./AnimatedBackground";
 import { TopBar } from "./TopBar";
+import { AccountProvider } from "@/lib/cloud-account";
 
 function Frame({ children }: { children: ReactNode }) {
   const { background, primary, wallpaperDim } = useWallet();
@@ -22,9 +23,9 @@ function Frame({ children }: { children: ReactNode }) {
 export function AppShell({ children }: { children: ReactNode }) {
   return (
     <DirectionProvider dir="rtl">
-      <WalletProvider>
+      <AccountProvider><WalletProvider>
         <Frame>{children}</Frame>
-      </WalletProvider>
+      </WalletProvider></AccountProvider>
     </DirectionProvider>
   );
 }

@@ -10,7 +10,11 @@
 
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as IndexRouteImport } from './routes/index'
+import { Route as AddressManagementRouteImport } from './routes/address-management'
 import { Route as AddressesRouteImport } from './routes/addresses'
+import { Route as FinneniceRouteImport } from './routes/finnenice'
+import { Route as MarketRouteImport } from './routes/market'
+import { Route as ResetPasswordRouteImport } from './routes/reset-password'
 import { Route as SettingsRouteImport } from './routes/settings'
 import { Route as SettingsIndexRouteImport } from './routes/settings.index'
 import { Route as SettingsAppearanceRouteImport } from './routes/settings.appearance'
@@ -25,9 +29,29 @@ const IndexRoute = IndexRouteImport.update({
   path: '/',
   getParentRoute: () => rootRouteImport,
 } as any)
+const AddressManagementRoute = AddressManagementRouteImport.update({
+  id: '/address-management',
+  path: '/address-management',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const AddressesRoute = AddressesRouteImport.update({
   id: '/addresses',
   path: '/addresses',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const FinneniceRoute = FinneniceRouteImport.update({
+  id: '/finnenice',
+  path: '/finnenice',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const MarketRoute = MarketRouteImport.update({
+  id: '/market',
+  path: '/market',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ResetPasswordRoute = ResetPasswordRouteImport.update({
+  id: '/reset-password',
+  path: '/reset-password',
   getParentRoute: () => rootRouteImport,
 } as any)
 const SettingsRoute = SettingsRouteImport.update({
@@ -73,7 +97,11 @@ const SettingsVaultRoute = SettingsVaultRouteImport.update({
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
+  '/address-management': typeof AddressManagementRoute
   '/addresses': typeof AddressesRoute
+  '/finnenice': typeof FinneniceRoute
+  '/market': typeof MarketRoute
+  '/reset-password': typeof ResetPasswordRoute
   '/settings': typeof SettingsRouteWithChildren
   '/settings/appearance': typeof SettingsAppearanceRoute
   '/settings/devices': typeof SettingsDevicesRoute
@@ -85,7 +113,11 @@ export interface FileRoutesByFullPath {
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
+  '/address-management': typeof AddressManagementRoute
   '/addresses': typeof AddressesRoute
+  '/finnenice': typeof FinneniceRoute
+  '/market': typeof MarketRoute
+  '/reset-password': typeof ResetPasswordRoute
   '/settings/appearance': typeof SettingsAppearanceRoute
   '/settings/devices': typeof SettingsDevicesRoute
   '/settings/passkeys': typeof SettingsPasskeysRoute
@@ -97,7 +129,11 @@ export interface FileRoutesByTo {
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
+  '/address-management': typeof AddressManagementRoute
   '/addresses': typeof AddressesRoute
+  '/finnenice': typeof FinneniceRoute
+  '/market': typeof MarketRoute
+  '/reset-password': typeof ResetPasswordRoute
   '/settings': typeof SettingsRouteWithChildren
   '/settings/appearance': typeof SettingsAppearanceRoute
   '/settings/devices': typeof SettingsDevicesRoute
@@ -111,7 +147,11 @@ export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
   fullPaths:
     | '/'
+    | '/address-management'
     | '/addresses'
+    | '/finnenice'
+    | '/market'
+    | '/reset-password'
     | '/settings'
     | '/settings/appearance'
     | '/settings/devices'
@@ -123,7 +163,11 @@ export interface FileRouteTypes {
   fileRoutesByTo: FileRoutesByTo
   to:
     | '/'
+    | '/address-management'
     | '/addresses'
+    | '/finnenice'
+    | '/market'
+    | '/reset-password'
     | '/settings/appearance'
     | '/settings/devices'
     | '/settings/passkeys'
@@ -134,7 +178,11 @@ export interface FileRouteTypes {
   id:
     | '__root__'
     | '/'
+    | '/address-management'
     | '/addresses'
+    | '/finnenice'
+    | '/market'
+    | '/reset-password'
     | '/settings'
     | '/settings/appearance'
     | '/settings/devices'
@@ -147,7 +195,11 @@ export interface FileRouteTypes {
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
+  AddressManagementRoute: typeof AddressManagementRoute
   AddressesRoute: typeof AddressesRoute
+  FinneniceRoute: typeof FinneniceRoute
+  MarketRoute: typeof MarketRoute
+  ResetPasswordRoute: typeof ResetPasswordRoute
   SettingsRoute: typeof SettingsRouteWithChildren
 }
 
@@ -160,11 +212,39 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof IndexRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/address-management': {
+      id: '/address-management'
+      path: '/address-management'
+      fullPath: '/address-management'
+      preLoaderRoute: typeof AddressManagementRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/addresses': {
       id: '/addresses'
       path: '/addresses'
       fullPath: '/addresses'
       preLoaderRoute: typeof AddressesRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/finnenice': {
+      id: '/finnenice'
+      path: '/finnenice'
+      fullPath: '/finnenice'
+      preLoaderRoute: typeof FinneniceRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/market': {
+      id: '/market'
+      path: '/market'
+      fullPath: '/market'
+      preLoaderRoute: typeof MarketRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/reset-password': {
+      id: '/reset-password'
+      path: '/reset-password'
+      fullPath: '/reset-password'
+      preLoaderRoute: typeof ResetPasswordRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/settings': {
@@ -252,7 +332,11 @@ const SettingsRouteWithChildren = SettingsRoute._addFileChildren(
 
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
+  AddressManagementRoute: AddressManagementRoute,
   AddressesRoute: AddressesRoute,
+  FinneniceRoute: FinneniceRoute,
+  MarketRoute: MarketRoute,
+  ResetPasswordRoute: ResetPasswordRoute,
   SettingsRoute: SettingsRouteWithChildren,
 }
 export const routeTree = rootRouteImport

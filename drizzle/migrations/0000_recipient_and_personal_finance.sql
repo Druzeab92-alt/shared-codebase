@@ -1,0 +1,18 @@
+CREATE TABLE public.recipients (id uuid PRIMARY KEY DEFAULT gen_random_uuid(), user_id uuid NOT NULL DEFAULT auth.uid(), profile_id text NOT NULL, name text NOT NULL, coin text NOT NULL, network text NOT NULL, address text NOT NULL, trusted boolean NOT NULL DEFAULT false, created_at timestamptz NOT NULL DEFAULT now());
+GRANT SELECT, INSERT, UPDATE, DELETE ON public.recipients TO authenticated;
+GRANT ALL ON public.recipients TO service_role;
+ALTER TABLE public.recipients ENABLE ROW LEVEL SECURITY;
+CREATE POLICY own_recipients ON public.recipients FOR ALL TO authenticated USING (user_id = (SELECT auth.uid())) WITH CHECK (user_id = (SELECT auth.uid()));
+CREATE INDEX recipients_owner_profile ON public.recipients(user_id, profile_id);
+CREATE TABLE public.finance_entries (id uuid PRIMARY KEY DEFAULT gen_random_uuid(), user_id uuid NOT NULL DEFAULT auth.uid(), profile_id text NOT NULL, title text NOT NULL, kind text NOT NULL CHECK (kind IN ('expense','income')), amount numeric NOT NULL CHECK (amount > 0), currency text NOT NULL, category text NOT NULL, entry_date date NOT NULL DEFAULT CURRENT_DATE, created_at timestamptz NOT NULL DEFAULT now());
+GRANT SELECT, INSERT, UPDATE, DELETE ON public.finance_entries TO authenticated;
+GRANT ALL ON public.finance_entries TO service_role;
+ALTER TABLE public.finance_entries ENABLE ROW LEVEL SECURITY;
+CREATE POLICY own_entries ON public.finance_entries FOR ALL TO authenticated USING (user_id = (SELECT auth.uid())) WITH CHECK (user_id = (SELECT auth.uid()));
+CREATE INDEX entries_owner_profile ON public.finance_entries(user_id, profile_id);
+CREATE TABLE public.finance_goals (id uuid PRIMARY KEY DEFAULT gen_random_uuid(), user_id uuid NOT NULL DEFAULT auth.uid(), profile_id text NOT NULL, title text NOT NULL, target numeric NOT NULL CHECK (target > 0), saved numeric NOT NULL DEFAULT 0 CHECK (saved >= 0), currency text NOT NULL, due_date date, created_at timestamptz NOT NULL DEFAULT now());
+GRANT SELECT, INSERT, UPDATE, DELETE ON public.finance_goals TO authenticated;
+GRANT ALL ON public.finance_goals TO service_role;
+ALTER TABLE public.finance_goals ENABLE ROW LEVEL SECURITY;
+CREATE POLICY own_goals ON public.finance_goals FOR ALL TO authenticated USING (user_id = (SELECT auth.uid())) WITH CHECK (user_id = (SELECT auth.uid()));
+CREATE INDEX goals_owner_profile ON public.finance_goals(user_id, profile_id);

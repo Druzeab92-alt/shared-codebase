@@ -31,3 +31,4 @@ use the editor.
 
 - Keep each wallet navigation destination in a separate content route and reuse HomeNav so all wallet pages share the same navigation.
 - Market displays explicitly labeled demo prices from the existing crypto data; do not imply a live feed without integrating one.
+- Store new recipient and personal-finance records in owner-scoped Cloud tables; a shared account provider supplies session state while row-level security enforces ownership.
